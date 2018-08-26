@@ -5,9 +5,13 @@ import datetime
 class Database:
     DB_NAME = 'jobs_QCity.db'
     QC_ALL_JOBS_TABLE = 'SELECT * FROM jobs_QCity'
-    QC_RECENT_JOBS_TABLE = 'SELECT * FROM (SELECT * FROM jobs_QCity ORDER BY id DESC LIMIT 10) ORDER BY id ASC'
+    QC_RECENT_JOBS_TABLE = 'SELECT * FROM (SELECT * FROM jobs_QCity ORDER BY id DESC LIMIT 20) ORDER BY id ASC'
 
-    def select_10_most_recent_jobs(self):
+    # can't rely on URL field to detect duplicates : www.indeed.ca uses 'dynamic' urls
+    #
+    DEL_DUPLICATES = "DELETE FROM jobs_QCity WHERE rowid NOT IN (SELECT MIN(rowid) FROM jobs_QCity GROUP BY title, description)"
+
+    def select_20_most_recent_jobs(self):
         return self.__select(self.QC_RECENT_JOBS_TABLE)
 
     def select_all_jobs_qcity(self):
@@ -39,6 +43,13 @@ class Database:
         insertion_date = datetime.datetime.now()
         conn = self.__fetch_connection()
         conn.cursor().execute(sql, (title, description, url, insertion_date))
+        conn.commit()
+        conn.close()
+
+    def eliminate_duplicate_records(self):
+
+        conn = self.__fetch_connection()
+        conn.cursor().execute(self.DEL_DUPLICATES)
         conn.commit()
         conn.close()
 

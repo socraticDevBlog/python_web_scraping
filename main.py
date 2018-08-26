@@ -9,5 +9,7 @@ parser = QuebecProgrammingJobsParser()
 parser.execute_and_save()
 
 # prints programming jobs in Quebec city
-for row in db.select_10_most_recent_jobs():
+for row in db.select_20_most_recent_jobs():
     print(row)
+
+db.eliminate_duplicate_records()
