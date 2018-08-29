@@ -13,4 +13,3 @@ db.eliminate_duplicate_records()
 # prints programming jobs in Quebec city
 for row in db.select_20_most_recent_jobs():
     print(row)
-

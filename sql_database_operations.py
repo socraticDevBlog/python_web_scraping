@@ -47,7 +47,6 @@ class Database:
         conn.close()
 
     def eliminate_duplicate_records(self):
-
         conn = self.__fetch_connection()
         conn.cursor().execute(self.DEL_DUPLICATES)
         conn.commit()
