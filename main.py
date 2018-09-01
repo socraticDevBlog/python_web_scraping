@@ -1,4 +1,5 @@
 from quebec_jobs_parser import QuebecProgrammingJobsParser
+from qc_glassdoor_parser import GlassdoorQcParser
 from sql_database_operations import Database
 
 db = Database()
@@ -8,7 +9,10 @@ db = Database()
 parser = QuebecProgrammingJobsParser()
 parser.execute_and_save()
 
-db.eliminate_duplicate_records()
+glassdoor_parser = GlassdoorQcParser()
+glassdoor_parser.execute_and_save()
+
+db.enforce_integrity()
 
 # prints programming jobs in Quebec city
 for row in db.select_20_most_recent_jobs():

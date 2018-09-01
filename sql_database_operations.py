@@ -10,6 +10,7 @@ class Database:
     # can't rely on URL field to detect duplicates : www.indeed.ca uses 'dynamic' urls
     #
     DEL_DUPLICATES = "DELETE FROM jobs_QCity WHERE rowid NOT IN (SELECT MIN(rowid) FROM jobs_QCity GROUP BY title, description)"
+    DEL_EMPTY_RECORD = "DELETE FROM jobs_QCity WHERE title = ''"
 
     def select_20_most_recent_jobs(self):
         return self.__select(self.QC_RECENT_JOBS_TABLE)
@@ -46,9 +47,10 @@ class Database:
         conn.commit()
         conn.close()
 
-    def eliminate_duplicate_records(self):
+    def enforce_integrity(self):
         conn = self.__fetch_connection()
         conn.cursor().execute(self.DEL_DUPLICATES)
+        conn.cursor().execute(self.DEL_EMPTY_RECORD)
         conn.commit()
         conn.close()
 

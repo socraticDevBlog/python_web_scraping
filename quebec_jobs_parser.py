@@ -12,12 +12,12 @@ class QuebecProgrammingJobsParser:
         self.__database = Database()
 
     def execute_and_save(self):
-        url_list = self.__retrieve_Jobboom_jobs()
-        self.__save_offers_Jobboom(url_list)
-        url_list = self.__retrieve_Indeed_jobs()
+        url_list = self.__retrieve_jobboom_jobs()
+        self.__save_offers_jobboom(url_list)
+        url_list = self.__retrieve_indeed_jobs()
         self.__save_offers_indeed(url_list)
 
-    def __retrieve_Jobboom_jobs(self):
+    def __retrieve_jobboom_jobs(self):
         response = requests.get(self.JOBBOOM_QC)
         soup = BeautifulSoup(response.content, 'lxml')
         job_ads = soup.findAll('a', href=True)
@@ -29,7 +29,7 @@ class QuebecProgrammingJobsParser:
 
         return url_list
 
-    def __retrieve_Indeed_jobs(self):
+    def __retrieve_indeed_jobs(self):
         response = requests.get(self.INDEED_QC)
         soup = BeautifulSoup(response.content, 'lxml')
         job_ads = soup.findAll("a", {"class": "jobtitle turnstileLink"})
@@ -40,7 +40,7 @@ class QuebecProgrammingJobsParser:
 
         return list(url_list)
 
-    def __save_offers_Jobboom(self, url_list):
+    def __save_offers_jobboom(self, url_list):
         for job_url in url_list:
             response = requests.get(job_url)
             soup = BeautifulSoup(response.content, 'lxml')
