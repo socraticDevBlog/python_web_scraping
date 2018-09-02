@@ -16,12 +16,7 @@ class GlassdoorQcParser:
         self.__save_offers_glassdoor(jobs, urls)
 
     def __retrieve_glassdoor_jobs(self):
-        # website refuses connection to a crawler agent (HTTP error 403)
-        # assign a phony agent to the Request
-        #
-        agent = 'Mozilla/5.0'
-        response = requests.get(self.GLASSDOOR_QC,  headers={'User-Agent': agent})
-        soup = BeautifulSoup(response.content, 'lxml')
+        soup = BeautifulSoup(self.__response().content, 'lxml')
         job_title = soup.findAll("a", {"class": "jobLink"})
 
         titles = []
@@ -31,9 +26,7 @@ class GlassdoorQcParser:
         return list(titles)
 
     def __retrieve_glassdoor_jobs_url(self):
-        agent = 'Mozilla/5.0'
-        response = requests.get(self.GLASSDOOR_QC,  headers={'User-Agent': agent})
-        soup = BeautifulSoup(response.content, 'lxml')
+        soup = BeautifulSoup(self.__response().content, 'lxml')
         job_ads = soup.findAll("a", {"class": "jobLink"})
 
         url_list = []
@@ -47,3 +40,10 @@ class GlassdoorQcParser:
 
         for key, value in temp_dict_job_url.items():
             self.__database.save(key, 'unavailable due to hard to parse HTML ;)', value)
+
+    def __response(self):
+        # website refuses connection to a crawler agent (HTTP error 403)
+        # assign a phony agent to the Request
+        #
+        agent = 'Mozilla/5.0'
+        return requests.get(self.GLASSDOOR_QC,  headers={'User-Agent': agent})
