@@ -11,27 +11,23 @@ class GlassdoorQcParser:
         self.__database = Database()
 
     def execute_and_save(self):
-        jobs = self.__retrieve_glassdoor_jobs()
-        urls = self.__retrieve_glassdoor_jobs_url()
+        jobs = self.__glassdoor_jobs()
+        urls = self.__glassdoor_jobs_url()
         self.__save_offers_glassdoor(jobs, urls)
 
-    def __retrieve_glassdoor_jobs(self):
+    def __glassdoor_jobs(self):
         titles = []
-        for item in self.__retrieve_soup():
+        for item in self.__soup():
             titles.append(item.text)
 
         return list(titles)
 
-    def __retrieve_glassdoor_jobs_url(self):
+    def __glassdoor_jobs_url(self):
         url_list = []
-        for item in self.__retrieve_soup():
+        for item in self.__soup():
             url_list.append(self.GLASSDOOR_BASE_URL + item['href'])
 
         return list(url_list)
-
-    def __retrieve_soup(self):
-        soup = BeautifulSoup(self.__response().content, 'lxml')
-        return soup.findAll("a", {"class": "jobLink"})
 
     def __save_offers_glassdoor(self, jobs, urls):
         for key, value in dict(zip(jobs, urls)).items():
@@ -42,3 +38,7 @@ class GlassdoorQcParser:
         # assign a phony agent to the Request
         #
         return requests.get(self.GLASSDOOR_QC,  headers={'User-Agent': 'Mozilla/5.0'})
+
+    def __soup(self):
+        soup = BeautifulSoup(self.__response().content, 'lxml')
+        return soup.findAll("a", {"class": "jobLink"})
