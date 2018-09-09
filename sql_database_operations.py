@@ -43,9 +43,16 @@ class Database:
         sql = "INSERT INTO jobs_QCity (title, description, url, insert_date) VALUES(?, ?, ?, ?)"
         insertion_date = datetime.datetime.now()
         conn = self.__fetch_connection()
-        conn.cursor().execute(sql, (title, description, url, insertion_date))
-        conn.commit()
-        conn.close()
+
+        if self.__offer_not_in_database(conn, title, description, url):
+            conn.cursor().execute(sql, (title, description, url, insertion_date))
+            conn.commit()
+            conn.close()
+
+    def __offer_not_in_database(self, connection, title, description, url):
+        answer = connection.cursor().execute("SELECT COUNT(*) FROM jobs_QCity WHERE title = ? and description  = ? and url = ?", (title, description, url))
+        row_count = answer.fetchone()
+        return row_count[0] == 0
 
     def enforce_integrity(self):
         conn = self.__fetch_connection()
