@@ -50,8 +50,8 @@ class Database:
             conn.close()
 
     def __offer_not_in_database(self, connection, title, description, url):
-        answer = connection.cursor().execute("SELECT COUNT(*) FROM jobs_QCity WHERE title = ? and description  = ? and url = ?", (title, description, url))
-        row_count = answer.fetchone()
+        dataset_count = connection.cursor().execute("SELECT COUNT(*) FROM jobs_QCity WHERE title = ? and description  = ? and url = ?", (title, description, url))
+        row_count = dataset_count.fetchone()
         return row_count[0] == 0
 
     def enforce_integrity(self):
