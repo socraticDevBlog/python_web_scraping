@@ -6,10 +6,18 @@ db = Database()
 # uncomment on first execution : will create a database file and a table
 #db.create_database()
 
+print("Getting jobs from Jobbom and Indeed")
 parser = QuebecProgrammingJobsParser()
 parser.execute_and_save()
 
+print("")
+print("Getting jobs from Glassdoor")
 glassdoor_parser = GlassdoorQcParser()
 glassdoor_parser.execute_and_save()
 
+print("")
+print("Getting rid of duplicate rows")
 db.enforce_integrity()
+
+job_in_progress = False
+
