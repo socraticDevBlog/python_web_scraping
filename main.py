@@ -18,6 +18,3 @@ glassdoor_parser.execute_and_save()
 print("")
 print("Getting rid of duplicate rows")
 db.enforce_integrity()
-
-job_in_progress = False
-
