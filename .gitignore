@@ -6,3 +6,10 @@ jobs_QCity - Copie.db
 .idea/workspace.xml
 .idea/workspace.xml
 .idea/workspace.xml
+.idea/misc.xml
+.idea/python_web_scraping.iml
+.idea/workspace.xml
+__pycache__/qc_glassdoor_parser.cpython-37.pyc
+__pycache__/quebec_jobs_parser.cpython-37.pyc
+__pycache__/sql_database_operations.cpython-37.pyc
+venv/Lib/tcl8.6/init.tcl
