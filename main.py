@@ -18,3 +18,7 @@ glassdoor_parser.execute_and_save()
 print("")
 print("Getting rid of duplicate rows")
 db.enforce_integrity()
+
+print("")
+print("Removing irrelevant job offers")
+db.remove_probably_irrelevant_offers()
