@@ -11,6 +11,8 @@ class Database:
     #
     DEL_DUPLICATES = "DELETE FROM jobs_QCity WHERE rowid NOT IN (SELECT MIN(rowid) FROM jobs_QCity GROUP BY title, description)"
     DEL_EMPTY_RECORD = "DELETE FROM jobs_QCity WHERE title = ''"
+    DEL_WHOLE_WORD_IS_PROGRAMME = "DELETE FROM jobs_QCity WHERE title LIKE '% programme %'"
+    DEL_WHOLE_WORD_IS_PROGRAMMES_PLURAL = "DELETE FROM jobs_QCity WHERE title LIKE '% programmes%'"
 
     def select_20_most_recent_jobs(self):
         return self.__select(self.QC_RECENT_JOBS_TABLE)
@@ -58,6 +60,13 @@ class Database:
         conn = self.__fetch_connection()
         conn.cursor().execute(self.DEL_DUPLICATES)
         conn.cursor().execute(self.DEL_EMPTY_RECORD)
+        
+        # addresss this patch applied to avoid irrelevant offers
+        # not urgent as of : february 11th 2019
+        #
+        conn.cursor().execute(self.DEL_WHOLE_WORD_IS_PROGRAMME)
+        conn.cursor().execute(self.DEL_WHOLE_WORD_IS_PROGRAMMES_PLURAL)
+        
         conn.commit()
         conn.close()
 
