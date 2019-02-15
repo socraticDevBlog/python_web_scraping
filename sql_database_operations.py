@@ -4,8 +4,11 @@ import datetime
 
 class Database:
     DB_NAME = 'jobs_QCity.db'
-    DELETE_OFFER_CONTAINING_PROBLEMATIC_WORD_1 = "DELETE FROM jobs_QCity WHERE title LIKE '% programme %'"
-    DELETE_OFFER_CONTAINING_PROBLEMATIC_WORD_2 = "DELETE FROM jobs_QCity WHERE title LIKE '% programmes%'"
+
+    # using REGEXP should be explored ! feb. 15th 2019
+    #
+    DELETE_OFFER_CONTAINING_PROBLEMATIC_WORD_1 = "DELETE FROM jobs_QCity WHERE title LIKE '%programme %'"
+    DELETE_OFFER_CONTAINING_PROBLEMATIC_WORD_2 = "DELETE FROM jobs_QCity WHERE title LIKE '%programmes%'"
 
     # can't rely on URL field to detect duplicates : www.indeed.ca uses 'dynamic' urls
     #
