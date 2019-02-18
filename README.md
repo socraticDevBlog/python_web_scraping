@@ -1,6 +1,6 @@
 # python_web_scraping
 
-(IFDR;)
+(IF;DR)
 this script is hardcoded to fetch job offers for a developer in the area of Quebec City, Canada.
 did my best to decouple Data Access from web-scraping logic.
 
