@@ -6,13 +6,27 @@ did my best to decouple Data Access from web-scraping logic.
 
 on first time use :
 
-1- open Main.Py file and uncomment the line which will create a SQLite table right next to the code files
+* make sure to have installed 'BeautifulSoup' library :
 
-2- just run the Main.Py file by double-clicking on it and it will fetch job offers in about 30 seconds.
+  $ sudo apt-get install python3-bs4
+  
+  $ pip install bs4
 
-3- you can view offers in SQLite3 console, but i prefer using LibreOffice Base for now
+* make sure to have installed the lxml parser library :
 
-4- by geeking out a little what BeautifulSoup library is about, you can switch the 'parsing classes' for your own ; looking for new jobs offering available in your area from your favoriste job websites.
+   $ sudo apt-get install python3-lxml
+
+* open Main.Py file with a text Editor :
+
+    uncomment the line which will create a SQLite table right next to the code files
+
+Then you can expect it to work :
+
+1- just run the Main.Py file by double-clicking on it and it will fetch job offers in about 30 seconds.
+
+2- you can view offers in SQLite3 console, but i prefer using LibreOffice Base for now
+
+3- by geeking out a little what BeautifulSoup library is about, you can switch the 'parsing classes' for your own ; looking for new jobs offering available in your area from your favoriste job websites.
 
 ########
 
