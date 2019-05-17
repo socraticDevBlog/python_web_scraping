@@ -45,6 +45,10 @@ class QuebecProgrammingJobsParser:
     def __retrieve_indeed_jobs(self):
         response = requests.get(self.INDEED_QC)
         soup = BeautifulSoup(response.content, 'lxml')
+
+        ## TODO : this class doesn't seem to exist anymore
+        ##  get the proper tag to fetch job offer's URL 
+        ##
         job_ads = soup.findAll("a", {"class": "jobtitle turnstileLink"})
 
         url_list = []
