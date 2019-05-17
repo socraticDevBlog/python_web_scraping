@@ -4,7 +4,12 @@ from sql_database_operations import Database
 
 
 class GlassdoorQcParser:
-    GLASSDOOR_QC = "https://www.glassdoor.ca/Job/quebec-programmer-jobs-SRCH_IL.0,6_IC2298450_KO7,17.htm"
+    
+    # it used to look for the word 'programmer' which gives us garbage and game development jobs
+    # let's try 'analyste-programmeur' in Quebec City 
+    # date is : May 16th 2019
+    # 
+    GLASSDOOR_QC = "https://www.glassdoor.ca/Job/quebec-analyste-programmeur-jobs-SRCH_IL.0,6_IC2298450_KO7,27.htm"
     GLASSDOOR_BASE_URL = "https://www.glassdoor.ca"
 
     def __init__(self):
@@ -40,5 +45,8 @@ class GlassdoorQcParser:
         return requests.get(self.GLASSDOOR_QC,  headers={'User-Agent': 'Mozilla/5.0'})
 
     def __soup(self):
+        # the 'soup' is a list of all html 'a' tags of class 'joblink'
+        # them Glassdoor have us working over time to get what we want !!
+        #
         soup = BeautifulSoup(self.__response().content, 'lxml')
         return soup.findAll("a", {"class": "jobLink"})
