@@ -1,7 +1,5 @@
 # python_web_scraping
 
-(not maintained as of March 2019)
-
 (IF;DR)
 this script is hardcoded to fetch job offers for a developer in the area of Quebec City, Canada.
 did my best to decouple Data Access from web-scraping logic.
@@ -42,4 +40,4 @@ il s'assure d'éliminer les duplicats (plusieurs fois la même offre) à chaque 
 
 https://maximeboninblog.wordpress.com/2018/08/26/creer-des-api-sur-mesure-avec-la-librairie-beautifulsoup-en-python/
 
-(Dernière mise à jour : dimanche 26 août 2018)
+(Dernière mise à jour : jeudi 16 mai 2019)
