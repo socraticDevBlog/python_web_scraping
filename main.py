@@ -4,7 +4,7 @@ from sql_database_operations import Database
 
 db = Database()
 # uncomment on first execution : will create a database file and a table
-db.create_database()
+#db.create_database()
 
 print("Getting jobs from Jobbom and Indeed")
 parser = QuebecProgrammingJobsParser()
