@@ -25,9 +25,6 @@ class QuebecProgrammingJobsParser:
     def __retrieve_jobboom_jobs(self):
         response = requests.get(self.JOBBOOM_QC)
 
-        # see 'lxml' :  you will have to install the lxml python's library in your environment
-        # hint : you will use PIP
-        #
         soup = BeautifulSoup(response.content, 'lxml')
         job_ads = soup.findAll('a', href=True)
 
