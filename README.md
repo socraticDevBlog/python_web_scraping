@@ -1,8 +1,6 @@
 # python_web_scraping
 
-(IF;DR)
-this script is hardcoded to fetch job offers for a developer in the area of Quebec City, Canada.
-did my best to decouple Data Access from web-scraping logic.
+This script is hardcoded to fetch job offers for a developer role in the area of Quebec City, Canada.
 
 on first time use :
 
@@ -24,6 +22,7 @@ Then you can expect it to work :
 
 1- just run the Main.Py file by double-clicking on it and it will fetch job offers in about 30 seconds.
 
-2- you can view offers in SQLite3 console, but i prefer using LibreOffice Base for now
+2- you can view offers in SQLite3 console, but i prefer using a web-based tool like 'sqliteonline.com'
 
-3- by geeking out a little what BeautifulSoup library is about, you can switch the 'parsing classes' for your own ; looking for new jobs offering available in your area from your favoriste job websites.
+3- by geeking out a little what BeautifulSoup library is about, you can switch the 'parsing classes' for your own ; looking for new jobs   
+   offering available in your area from your favoriste job websites.
