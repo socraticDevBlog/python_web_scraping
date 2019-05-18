@@ -26,9 +26,12 @@ class Logger:
                             level=verbosity
                             )
 
+        # INFO verbosity level is 20 : 
+        # only shown when debugging (level 10)
+        #
         logging.info('Log for program %s' % program_name)
 
-        now =  str(datetime.datetime.today())
+        now = str(datetime.datetime.today())
         logging.info('Execution date = %s' % now)
 
     def debug(self, arg):
