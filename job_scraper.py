@@ -8,6 +8,10 @@ STEP_JOBBOOM_AND_INDEED = "Getting jobs from Jobbom and Indeed"
 STEP_GLASSDOOR = "Getting jobs from Glassdoor"
 
 program_name = argv[0]
+
+# trigger DEBUG logging mode by adding integer param 10 in Terminal
+# this way :  $python job_scraper.py 10
+#
 logger_verbosity_level = int(argv[1]) if len(argv) > 1 else Logger.LOWEST_VERBOSITY
 logger = Logger(program_name, logger_verbosity_level)
 
