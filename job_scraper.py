@@ -8,7 +8,7 @@ STEP_JOBBOOM_AND_INDEED = "Getting jobs from Jobbom and Indeed"
 STEP_GLASSDOOR = "Getting jobs from Glassdoor"
 
 program_name = argv[0]
-logger_verbosity_level = int( argv[1]) if len(argv) > 1 else Logger.LOWEST_VERBOSITY
+logger_verbosity_level = int(argv[1]) if len(argv) > 1 else Logger.LOWEST_VERBOSITY
 logger = Logger(program_name, logger_verbosity_level)
 
 try:    
