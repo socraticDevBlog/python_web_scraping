@@ -6,12 +6,11 @@ import logging
 class Logger:
 
     LOG_FILE = 'log_'
+    TIMESTAMP_SYNTAX = "%Y%m%d-%H%M%S"
     FILE_TYPE = '.out'
     LOWEST_VERBOSITY = logging.ERROR
-    TIMESTAMP_SYNTAX = "%Y%m%d-%H%M%S"
     
     def __init__(self, program_name, verbosity=LOWEST_VERBOSITY):
-
         now = str(datetime.datetime.today())
 
         timestamp = time.strftime(self.TIMESTAMP_SYNTAX)
