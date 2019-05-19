@@ -20,7 +20,7 @@ on first time use :
 
 Then you can expect it to work :
 
-1- just run the Main.Py file by double-clicking on it and it will fetch job offers in about 30 seconds.
+1- just run the jobs_scraper.py file by double-clicking on it and it will fetch job offers in about 30 seconds.
 
 2- you can view offers in SQLite3 console, but i prefer using a web-based tool like 'sqliteonline.com'
 
