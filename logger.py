@@ -1,38 +1,28 @@
-import logging
 import datetime
+import time
+import logging
 
 
 class Logger:
 
-    LOG_FILE = 'log.out'
+    LOG_FILE = 'log_'
+    FILE_TYPE = '.out'
+    LOWEST_VERBOSITY = logging.ERROR
+    TIMESTAMP_SYNTAX = "%Y%m%d-%H%M%S"
     
-    # logging verbosity can be set from a console command parameter 
-    #   ex. : DEBUG verbosity -> $python mainFile.py 10
-    #   
-    # invokation with parameter = default level of verbosity is ERROR
-    #
-    # in mainFile, you can parse args this way :
-    #
-    #       if len(sys.argv) < 2:
-    #           obj = Logger(sys.argv[0])
-    #       else:
-    #           obj = Logger(sys.argv[0], int(sys.argv[1]))
+    def __init__(self, program_name, verbosity=LOWEST_VERBOSITY):
 
-    def __init__(self, program_name, verbosity=logging.ERROR):
-        # ERROR level by default = integer of value 40
-        # DEBUG level = integer of value 10 inputed by Class user 
-        #
-        logging.basicConfig(filename=self.LOG_FILE, 
+        now = str(datetime.datetime.today())
+
+        timestamp = time.strftime(self.TIMESTAMP_SYNTAX)
+        log_file_name = self.LOG_FILE + timestamp  + self.FILE_TYPE
+
+        logging.basicConfig(filename=log_file_name, 
                             level=verbosity
                             )
 
-        # INFO verbosity level is 20 : 
-        # only shown when debugging (level 10)
-        #
-        logging.info('Log for program %s' % program_name)
-
-        now = str(datetime.datetime.today())
-        logging.info('Execution date = %s' % now)
+        logging.critical('Log for program %s' % program_name)
+        logging.critical('Execution date = %s' % now)
 
     def debug(self, arg):
         logging.debug(arg)
