@@ -26,3 +26,5 @@ Then you can expect it to work :
 
 3- by geeking out a little what BeautifulSoup library is about, you can switch the 'parsing classes' for your own ; looking for new jobs   
    offering available in your area from your favoriste job websites.
+   
+ * developers : running script (i.e. 'job_scraper.py') with integer of value 10 will output detailed debug logs in a file named 'log.out'.   (on your terminal start script by typing this : $python job_scraper.py 10) 
