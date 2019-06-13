@@ -12,14 +12,13 @@ class Database:
 
     # can't rely on URL field to detect duplicates : www.indeed.ca uses 'dynamic' urls
     #
-    DEL_DUPLICATES = "DELETE FROM jobs_QCity WHERE rowid NOT IN (SELECT MIN(rowid) FROM jobs_QCity GROUP BY title, description)"
+    DEL_DUPLICATES = "DELETE FROM jobs_QCity WHERE rowid NOT IN (SELECT MIN(rowid) FROM jobs_QCity GROUP BY title)"
     DEL_EMPTY_RECORD = "DELETE FROM jobs_QCity WHERE title = ''"
 
     def create_database(self):
         table_creation_sql = (" CREATE TABLE IF NOT EXISTS jobs_QCity(\n"
                               "     id integer PRIMARY KEY,\n"
                               "     title VARCHAR ,\n"
-                              "     description TEXT,\n"
                               "     url VARCHAR,\n"
                               "     insert_date TEXT\n"
                               "     ); ")
@@ -29,13 +28,13 @@ class Database:
         conn.commit()
         conn.close()
 
-    def save(self, title, description, url):
-        sql = "INSERT INTO jobs_QCity (title, description, url, insert_date) VALUES(?, ?, ?, ?)"
+    def save(self, title, url):
+        sql = "INSERT INTO jobs_QCity (title, url, insert_date) VALUES(?, ?, ?)"
         insertion_date = datetime.datetime.now()
         conn = self.__fetch_connection()
 
-        if self.__offer_not_in_database(conn, title, description, url):
-            conn.cursor().execute(sql, (title, description, url, insertion_date))
+        if self.__offer_not_in_database(conn, title, url):
+            conn.cursor().execute(sql, (title, url, insertion_date))
             conn.commit()
             conn.close()
 
@@ -53,8 +52,8 @@ class Database:
         conn.commit()
         conn.close()
 
-    def __offer_not_in_database(self, connection, title, description, url):
-        dataset_count = connection.cursor().execute("SELECT COUNT(*) FROM jobs_QCity WHERE title = ? and description  = ? and url = ?", (title, description, url))
+    def __offer_not_in_database(self, connection, title, url):
+        dataset_count = connection.cursor().execute("SELECT COUNT(*) FROM jobs_QCity WHERE title = ?  and url = ?", (title, url))
         row_count = dataset_count.fetchone()
         return row_count[0] == 0
 

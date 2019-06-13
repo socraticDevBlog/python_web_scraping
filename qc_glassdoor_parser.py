@@ -36,7 +36,7 @@ class GlassdoorQcParser:
 
     def __save_offers_glassdoor(self, jobs, urls):
         for key, value in dict(zip(jobs, urls)).items():
-            self.__database.save(key, 'unavailable due to hard to parse HTML ;)', value)
+            self.__database.save(key, value)
 
     def __response(self):
         # website refuses connection to a crawler agent (HTTP error 403)
