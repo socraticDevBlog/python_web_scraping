@@ -1,5 +1,6 @@
-from quebec_jobs_parser import QuebecProgrammingJobsParser
 from qc_glassdoor_parser import GlassdoorQcParser
+from jobboom_parser import JobboomParser
+from indeed_parser import IndeedParser
 from sql_database_operations import Database
 from sys import argv
 from logger import Logger
@@ -18,18 +19,29 @@ logger = Logger(program_name, logger_verbosity_level)
 try:    
     db = Database()
     # uncomment on first execution : will create a database file and a table
-    #db.create_database()
+    # db.create_database()
 except:
     logger.error('unable to create database object')
 
 try:
-    print(STEP_JOBBOOM_AND_INDEED, end = "\r\n")
-    parser = QuebecProgrammingJobsParser()
+    print('parsing INDEED website', end = "\r\n")
+
+    parser = IndeedParser(logger)
     parser.execute_and_save()
     
-    logger.debug('finished scraping Joboom and Indeed websites' )
+    logger.debug('finished scraping Indeed website' )
 except:
-    logger.error('scraping Jobboom or Indeed websites')
+    logger.error('unable to execute INDEED')
+
+try:
+    print('parsing JOBBOM website', end = "\r\n")
+
+    parser = JobboomParser()
+    parser.execute_and_save()
+    
+    logger.debug('finished scraping JOBBOOM website' )
+except:
+    logger.error('unable to execute JOBBOOM')
 
 try:
     print(STEP_GLASSDOOR, end = "\r\n")

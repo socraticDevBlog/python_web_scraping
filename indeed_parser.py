@@ -48,11 +48,4 @@ class IndeedParser:
             response = requests.get(job_url)
             soup = BeautifulSoup(response.content, 'lxml')
             job_title = soup.title.text
-            job_description = soup.find("meta",  property="content")
-            
-
-            # BeautifulSoup is unable to retrieve the whole html document -
-            # probably due to syntax error in the <body> ...
-            # thus save what you're able to retrieve !
-            #
             self.__database.save(job_title, job_url)
