@@ -15,15 +15,9 @@ class IndeedParser:
    #
     CLASS_WHERE_URL_IS = "jobtitle turnstileLink "
 
-    def __init__(self, passed_logger):        
+    def __init__(self, database, passed_logger):        
         self._logger = passed_logger
-
-        try:
-            self.__database = Database()
-
-            self._logger.debug("Created database")
-        except:
-           self._logger.error("failed to create database")
+        self.__database = database
         
     def execute_and_save(self):
         url_list = self.__retrieve_indeed_jobs()

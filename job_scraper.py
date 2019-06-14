@@ -26,7 +26,7 @@ except:
 try:
     print('parsing INDEED website', end = "\r\n")
 
-    parser = IndeedParser(logger)
+    parser = IndeedParser(db, logger)
     parser.execute_and_save()
     
     logger.debug('finished scraping Indeed website' )
@@ -36,7 +36,7 @@ except:
 try:
     print('parsing JOBBOM website', end = "\r\n")
 
-    parser = JobboomParser()
+    parser = JobboomParser(db)
     parser.execute_and_save()
     
     logger.debug('finished scraping JOBBOOM website' )
@@ -45,7 +45,7 @@ except:
 
 try:
     print(STEP_GLASSDOOR, end = "\r\n")
-    glassdoor_parser = GlassdoorQcParser()
+    glassdoor_parser = GlassdoorQcParser(db)
     glassdoor_parser.execute_and_save()
 
     logger.debug('finished scraping Glassdoor website' )

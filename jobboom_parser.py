@@ -9,8 +9,8 @@ class JobboomParser:
     JOBBOOM_QC = 'https://www.jobboom.com/fr/region-de-ville-de-quebec/analyste-programmeur/_r2k-1?displayKeyword=analyste-programmeur&sortBy=relevance'
     JOBBOOM_BASE_URL = 'https://www.jobboom.com'
 
-    def __init__(self):
-        self.__database = Database()
+    def __init__(self, database):
+        self.__database = database
 
     def execute_and_save(self):
         url_list = self.__retrieve_jobboom_jobs()

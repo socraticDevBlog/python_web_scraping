@@ -12,8 +12,8 @@ class GlassdoorQcParser:
     GLASSDOOR_QC = "https://www.glassdoor.ca/Job/quebec-analyste-programmeur-jobs-SRCH_IL.0,6_IC2298450_KO7,27.htm"
     GLASSDOOR_BASE_URL = "https://www.glassdoor.ca"
 
-    def __init__(self):
-        self.__database = Database()
+    def __init__(self, database):
+        self.__database = database
 
     def execute_and_save(self):
         jobs = self.__glassdoor_jobs()
