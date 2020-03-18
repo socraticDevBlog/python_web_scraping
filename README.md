@@ -2,7 +2,7 @@
 
 This script is hardcoded to fetch job offers for a developer role in the area of Quebec City, Canada.
 
-on first time use :
+on first time use (Windows users, i tell you what to do further down):
 
 * make sure to have installed 'BeautifulSoup' library :
 
@@ -17,6 +17,20 @@ on first time use :
 * open Main.Py file with a text Editor :
 
     uncomment the line which will create a SQLite table right next to the code files
+    
+** You are a poor Windows user ?? no worries ! :
+
+    - Please have Python 3 installed
+    
+    - If you know how to do it, please put you in a Virtual Environnement (venv)
+    
+    - via the Command line (PowerShell), install 3 librairies : BeautifulSoup, lxml and Requests
+    
+        - pip3 install beautifulsoup4
+        
+        - pip3 install lxml
+        
+        - pip3 install requests
 
 Then you can expect it to work :
 
