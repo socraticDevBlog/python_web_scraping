@@ -22,7 +22,7 @@ on first time use (Windows users, i tell you what to do further down):
 
     - Please have Python 3 installed
     
-    - If you know how to do it, please put you in a Virtual Environnement (venv)
+    - If you know how to do it, please put yourself behind a Virtual Environnement (venv)
     
     - via the Command line (PowerShell), install 3 librairies : BeautifulSoup, lxml and Requests
     
