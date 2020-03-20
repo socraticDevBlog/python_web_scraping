@@ -8,7 +8,7 @@ on first time use (Windows users, i tell you what to do further down):
 
   $ sudo apt-get install python3-bs4
   
-  $ pip install bs4
+  $ pip3 install beautifulsoup4
 
 * make sure to have installed the lxml parser library :
 
